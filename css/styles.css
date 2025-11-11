@@ -1,0 +1,374 @@
+/** Custom Properties Starts **/
+:root {
+	/** Website General Colors **/
+	--body-bg-color: #f9f9f9;
+	--bento-bg-color: #cdd5e0;
+	--body-text-color: #2d6a4f;
+	--primary: #2e4f21;
+	--secondary: #b2efc1;
+	--tertiary: #dffee8;
+	--white: #fff;
+	--black: #000;
+
+	/** Website Fonts **/
+	--main-font: "Bricolage Grotesque", sans-serif;
+
+	/** Website Sizes **/
+	--full: 100%;
+}
+/** Custom Properties Ends **/
+
+/** Global CSS Styles **/
+body {
+	font-family: var(--main-font);
+	font-optical-sizing: auto;
+	font-style: normal;
+	line-height: 1.5;
+	background-color: var(--body-bg-color);
+	color: var(--body-text-color);
+}
+
+/** WebSite General Styles **/
+.container,
+[class$="__container"] {
+	width: min(90%, 120rem);
+	margin-inline: auto;
+}
+
+.img-object {
+	object-fit: cover;
+	object-position: center;
+}
+
+.navigation__link::after,
+.bento__item:last-child {
+	background-color: var(--primary);
+}
+
+/** Utility First **/
+.text-center {
+	text-align: center;
+}
+
+.w-full {
+	width: var(--full);
+}
+
+.h-full {
+	height: var(--full);
+}
+
+/** Header Section **/
+.header {
+	padding-block: 2rem;
+
+	.header__logo {
+		max-width: 30rem;
+		margin: 0 auto 2rem;
+	}
+}
+
+.navigation {
+	font-weight: 600;
+
+	.navigation__link {
+		display: block;
+		position: relative;
+		padding-block: 0.8rem;
+		transition: color 0.25s ease-in-out;
+
+		&::after {
+			position: absolute;
+			content: "";
+			inset-inline-start: calc(var(--full) / 2);
+			inset-block-start: 2.2rem;
+			transform: translateX(-50%);
+			height: 0.25rem;
+			width: 0;
+			border-radius: 1rem;
+			transition: width 0.25s ease-in-out;
+		}
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	/** Header Section **/
+	.navigation {
+		.navigation__link {
+			&:hover {
+				color: var(--primary);
+
+				&::after {
+					width: var(--full);
+				}
+			}
+		}
+	}
+}
+
+@media (width >= 768px) {
+	/** Header Section **/
+	.header__bar,
+	.navigation {
+		display: flex;
+	}
+
+	.header {
+		.header__bar {
+			justify-content: space-between;
+			align-items: center;
+
+			.header__logo {
+				margin: 0;
+			}
+		}
+	}
+
+	.navigation {
+		justify-content: center;
+		column-gap: 2.5rem;
+
+		.navigation__link {
+			padding-block: 0;
+		}
+	}
+}
+
+/** Main Section **/
+.main {
+	margin-block-start: 3rem;
+}
+
+/** Bento Section **/
+.bento,
+.bento__item:is(:nth-child(3), :nth-child(5), :nth-child(8), :last-child) {
+	padding: 1.6rem;
+}
+
+.bento__item,
+.bento__picture {
+	overflow: hidden;
+}
+
+.bento {
+	display: grid;
+	grid-template-rows: repeat(9, 25rem);
+	grid-template-areas:
+		"nine"
+		"two"
+		"four"
+		"three"
+		"five"
+		"six"
+		"eight"
+		"one"
+		"seven";
+	gap: 1.6rem;
+	border-radius: 3.2rem;
+	background-color: var(--bento-bg-color);
+}
+
+.bento__item:is(
+		:nth-child(2),
+		:nth-child(3),
+		:nth-child(5),
+		:nth-child(7),
+		:nth-child(8),
+		:last-child
+	),
+.bento__item:is(:nth-child(2), :nth-child(7), :last-child) .bento__picture {
+	display: flex;
+}
+
+.bento__item:is(
+		:nth-child(2),
+		:nth-child(5),
+		:nth-child(7),
+		:nth-child(8),
+		:last-child
+	) {
+	flex-direction: column;
+}
+
+.bento__item:is(:nth-child(2), :nth-child(7)) .bento__picture,
+.bento__item:is(:nth-child(2), :nth-child(5), :nth-child(7), :nth-child(8)) {
+	justify-content: center;
+	align-items: center;
+}
+
+.bento__item {
+	border-radius: 1.6rem;
+
+	&:is(:nth-child(2), :nth-child(7)) {
+		background-color: var(--secondary);
+		line-height: 1.2;
+
+		.bento__title {
+			padding: 1.6rem 1.6rem 0;
+			font-size: 1.8rem;
+		}
+
+		.bento__picture {
+			flex: 1;
+		}
+	}
+
+	&:not(:nth-child(2), :nth-child(5), :nth-child(7), :last-child) {
+		.bento__image {
+			transition: transform 0.2s linear;
+		}
+	}
+
+	&:is(:nth-child(3), :nth-child(8)) {
+		background-color: var(--tertiary);
+	}
+
+	&:first-child {
+		grid-area: one;
+	}
+
+	&:nth-child(2) {
+		grid-area: two;
+
+		.bento__picture {
+			max-width: 99%;
+		}
+	}
+
+	&:nth-child(3) {
+		grid-area: three;
+		font-size: clamp(2rem, 0.803rem + 1.124vw, 2.4rem);
+		font-weight: 700;
+		align-items: center;
+	}
+
+	&:nth-child(4) {
+		grid-area: four;
+	}
+
+	&:nth-child(5) {
+		grid-area: five;
+		background-color: var(--white);
+		row-gap: 1rem;
+
+		.bento__description {
+			font-size: 1.3rem;
+		}
+	}
+
+	&:nth-child(6) {
+		grid-area: six;
+	}
+
+	&:nth-child(7) {
+		grid-area: seven;
+	}
+
+	&:nth-child(8) {
+		grid-area: eight;
+
+		.bento__icon {
+			max-width: 4rem;
+		}
+
+		.bento__stats {
+			line-height: 1.15;
+
+			.bento__amount {
+				font-size: 4.5rem;
+				font-weight: 800;
+			}
+		}
+	}
+
+	&:last-child {
+		grid-area: nine;
+		color: var(--white);
+		justify-content: space-between;
+
+		.bento__title {
+			font-size: 1.8rem;
+		}
+
+		.bento__picture {
+			justify-content: flex-end;
+		}
+	}
+}
+
+@media (hover: hover) {
+	/** Bento Section **/
+	.bento__item:not(:nth-child(2), :nth-child(5), :nth-child(7), :last-child)
+		.bento__image:hover {
+		transform: scale(1.05);
+	}
+}
+
+@media (width >= 375px) {
+	/** Bento Section **/
+	.bento__item:is(:nth-child(2), :nth-child(7), :last-child) .bento__title {
+		font-size: 2.2rem;
+	}
+}
+
+@media (width >= 480px) {
+	/** Bento Section **/
+	.bento {
+		grid-template: repeat(3, 20rem) repeat(2, 15rem) repeat(3, 20rem) / repeat(
+				2,
+				1fr
+			);
+		grid-template-areas:
+			"nine nine"
+			"two eight"
+			"two four"
+			"five five"
+			"five five"
+			"one seven"
+			"three seven"
+			"six six";
+
+		.bento__item {
+			&:is(:nth-child(2), :nth-child(7), :last-child) {
+				.bento__title {
+					font-size: 2.5rem;
+				}
+			}
+
+			&:nth-child(5) {
+				.bento__description {
+					font-size: 1.6rem;
+				}
+			}
+		}
+	}
+}
+
+@media (width >= 768px) {
+	/** Bento Section **/
+	.bento {
+		grid-template: repeat(2, 20rem) repeat(2, 15rem) repeat(2, 20rem) / repeat(
+				3,
+				1fr
+			);
+		grid-template-areas:
+			"two nine nine"
+			"two four eight"
+			"five five five"
+			"five five five"
+			"one three seven"
+			"six six seven";
+	}
+}
+
+@media (width >= 992px) {
+	/** Bento Section **/
+	.bento {
+		grid-template: 20rem repeat(2, 16rem) 20rem / repeat(4, 1fr);
+		grid-template-areas:
+			"one three four seven"
+			"one five five seven"
+			"two five five eight"
+			"two six nine nine";
+	}
+}
