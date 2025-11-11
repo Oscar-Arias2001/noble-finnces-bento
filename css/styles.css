@@ -296,6 +296,12 @@ body {
 	}
 }
 
+/** Footer Section **/
+.footer {
+	margin-block: 1.5rem;
+	font-weight: 700;
+}
+
 @media (hover: hover) {
 	/** Bento Section **/
 	.bento__item:not(:nth-child(2), :nth-child(5), :nth-child(7), :last-child)
