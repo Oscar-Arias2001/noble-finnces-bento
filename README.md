@@ -37,7 +37,7 @@ Users should be able to:
 ## 📁 Project Structure
 
 ```bash
-📦 card-features-section
+📦 noble-finances-bento
 ├── 📁 css/
 ├── 📁 img/
 ├── 🙅🏻‍♂️ .gitignore
